@@ -25,7 +25,7 @@ We also provide [`sample.ipynb`](./sample.ipynb), which demonstrates:
 1. 🔄 Using [LiteLLM](https://github.com/BerriAI/litellm) for easily switching between different models
 2. 📐 Using [`sentence-transformers`](https://www.sbert.net/) to evaluate model predictions
 
----
+
 
 ## 📦 Dependency Management
 
