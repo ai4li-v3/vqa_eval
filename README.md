@@ -3,27 +3,33 @@ Repository for automating the evaluation of Visual Question Answering (VQA) syst
 
 ## Problem Statement
 
-Visual Question Answering (VQA) systems need thorough evaluation to determine their accuracy, reliability, and performance across various image and question types. Traditionally, evaluating VQA systems has been labor-intensive, requiring:
+We already have a sample dataset in the `data/` folder.  
+Our goal is to **automate the evaluation process**:
 
-1. Manual review of model responses
-2. Subjective judgment of answer correctness
-3. Time-consuming comparison across multiple models
-4. Difficulty in scaling evaluation to large datasets
+- For each image in the `data/image/` folder:
+  - Read the corresponding label file from `data/label/`
+  - Extract the question(s) and ground-truth answer(s)
+  - Send a request to our model API with the image and question
+  - Receive the predicted answer from the model
+  - Evaluate the prediction using sentence similarity against the ground-truth answer (both in Vietnamese)
 
-This repository aims to solve these challenges by creating an automated evaluation pipeline that:
+We use a similarity threshold (e.g. `0.8`) to determine whether the prediction is correct.
 
-- Provides a standardized approach to evaluate multiple VQA models consistently
-- Uses semantic similarity to determine answer correctness rather than exact match
-- Supports multilingual evaluation capabilities
-- Streamlines comparison between different model architectures (e.g., Gemini, DeepSeek, etc.)
-- Generates comprehensive performance reports across different question categories and image types
+This process will run automatically across all samples in the dataset.
 
-Our evaluation framework leverages LiteLLM to access various models through a unified API and sentence-transformers to compute semantic similarity between predicted answers and ground truth. This approach enables more nuanced assessment of model performance beyond simple string matching.
 
-## Features
 
-- Unified API access to multiple AI models (Gemini, DeepSeek, etc.)
-- Semantic similarity scoring using multilingual sentence embeddings
-- Customizable evaluation metrics and thresholds
-- Support for batch processing of test datasets
-- Detailed performance reporting and visualization
+## Suggestion
+We also provide [`sample.ipynb`](./sample.ipynb), which demonstrates:
+
+1. 🔄 Using [LiteLLM](https://github.com/BerriAI/litellm) for easily switching between different models
+2. 📐 Using [`sentence-transformers`](https://www.sbert.net/) to evaluate model predictions
+
+---
+
+## 📦 Dependency Management
+
+We recommend using [**uv**](https://github.com/astral-sh/uv) — a fast, modern Python package manager — as it's becoming the new industry standard. However,
+fell free to switch into any convenience tools of you. 
+
+
